@@ -22,7 +22,15 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
 
-            cd repo-backend
+            sudo yum install git -y
+
+            cd /home/ec2-user
+
+            if [ ! -d "appbackend" ]; then
+              git clone https://github.com/YasmineMhadhbi/appbackend.git
+            fi
+
+            cd appbackend
 
             git pull origin main
 
